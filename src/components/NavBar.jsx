@@ -1,60 +1,79 @@
-import React from 'react'
-import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
-import CartWidget from './CartWidget';
+import React from "react";
+import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import CartWidget from "./CartWidget";
+import { LinkContainer } from "react-router-bootstrap";
 
 const NavBar = () => {
   return (
     <div>
-        <Navbar expand="lg" className="bg-body-tertiary">
-      <Container>
-        <Navbar.Brand href="#home">PC Gamers Paradise</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <NavDropdown title="Computadores" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">All-in-One</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Desktop
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Desktops Gamer</NavDropdown.Item>
-            </NavDropdown>
-            <NavDropdown title="Componentes" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Procesadores</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Placas Base
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Memorias</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.4">
-                Tarjetas Gráficas
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.5">
-                Almacenamiento
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.6">
-                Gabinetes
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.7">
-                Fuentes de Poder
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.8">
-                Refrigeración
-              </NavDropdown.Item>
-            </NavDropdown>
-            <Nav.Link href="#monitores">Monitores</Nav.Link>
-            <NavDropdown title="Periféricos" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Teclados</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Mouse
-              </NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
-          <CartWidget/>
+      <Navbar expand="lg" className="bg-body-tertiary">
+        <Container>
+          <LinkContainer to={"/"}>
+            <Navbar.Brand>PC Gamers Paradise</Navbar.Brand>
+          </LinkContainer>
+
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <NavDropdown title="Computadoras" id="basic-nav-dropdown">
+                <LinkContainer to={`/category/${"All-in-One"}`}>
+                  <NavDropdown.Item>All-in-One</NavDropdown.Item>
+                </LinkContainer>
+                <LinkContainer to={`/category/${"Escritorio"}`}>
+                  <NavDropdown.Item>Escritorio</NavDropdown.Item>
+                </LinkContainer>
+                <LinkContainer to={`/category/${"Computadoras Gamer"}`}>
+                  <NavDropdown.Item>Computadoras Gamer</NavDropdown.Item>
+                </LinkContainer>
+              </NavDropdown>
+
+              <NavDropdown title="Componentes" id="basic-nav-dropdown">
+                <LinkContainer to={`/category/${"Procesadores"}`}>
+                  <NavDropdown.Item>Procesadores</NavDropdown.Item>
+                </LinkContainer>
+                <LinkContainer to={`/category/${"Placas Base"}`}>
+                  <NavDropdown.Item>Placas Base</NavDropdown.Item>
+                </LinkContainer>
+                <LinkContainer to={`/category/${"Memorias"}`}>
+                  <NavDropdown.Item>Memorias</NavDropdown.Item>
+                </LinkContainer>
+                <LinkContainer to={`/category/${"Tarjetas Gráficas"}`}>
+                  <NavDropdown.Item>Tarjetas Gráficas</NavDropdown.Item>
+                </LinkContainer>
+                <LinkContainer to={`/category/${"Almacenamiento"}`}>
+                  <NavDropdown.Item>Almacenamiento</NavDropdown.Item>
+                </LinkContainer>
+                <LinkContainer to={`/category/${"Gabinetes"}`}>
+                  <NavDropdown.Item>Gabinetes</NavDropdown.Item>
+                </LinkContainer>
+                <LinkContainer to={`/category/${"Fuentes de Poder"}`}>
+                  <NavDropdown.Item>Fuentes de Poder</NavDropdown.Item>
+                </LinkContainer>
+                <LinkContainer to={`/category/${"Refrigeración"}`}>
+                  <NavDropdown.Item>Refrigeración</NavDropdown.Item>
+                </LinkContainer>
+              </NavDropdown>
+
+              <LinkContainer to={`/category/${"Monitores"}`}>
+                <Nav.Link>Monitores</Nav.Link>
+              </LinkContainer>
+
+              <NavDropdown title="Periféricos" id="basic-nav-dropdown">
+                <LinkContainer to={`/category/${"Teclados"}`}>
+                  <NavDropdown.Item>Teclados</NavDropdown.Item>
+                </LinkContainer>
+                <LinkContainer to={`/category/${"Mouse"}`}>
+                  <NavDropdown.Item>Mouse</NavDropdown.Item>
+                </LinkContainer>
+              </NavDropdown>
+            </Nav>
+            <CartWidget />
           </Navbar.Collapse>
         </Container>
       </Navbar>
     </div>
-  )
-}
+  );
+};
 
-export default NavBar
+export default NavBar;
