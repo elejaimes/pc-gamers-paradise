@@ -2,7 +2,7 @@
 
 <!-- Pendiente - Por crear logo -->
 
-![Logo del Proyecto](url-del-logo.png)
+![Segunda PreEntrega GIF](ruta/al/archivo.gif)
 
 ## Descripción
 
