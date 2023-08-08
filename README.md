@@ -2,7 +2,7 @@
 
 <!-- Pendiente - Por crear logo -->
 
-![Segunda PreEntrega GIF](ruta/al/archivo.gif)
+![Segunda PreEntrega GIF](./src/assets/segundaPreEntrega.gif)
 
 ## Descripción
 
