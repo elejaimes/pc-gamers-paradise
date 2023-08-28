@@ -16,6 +16,11 @@ const NavBar = () => {
 
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
+
+              <LinkContainer to={"/catalogue"}>
+                <Nav.Link>Todos Los Productos</Nav.Link>
+              </LinkContainer>
+
               <NavDropdown title="Computadoras" id="basic-nav-dropdown">
                 <LinkContainer to={`/category/${"All-in-One"}`}>
                   <NavDropdown.Item>All-in-One</NavDropdown.Item>

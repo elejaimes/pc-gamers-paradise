@@ -1,14 +1,14 @@
 import React from "react";
 import Item from "./Item";
 
-const ItemList = ({ products }) => {
+const ItemList = ({ data }) => {
   return (
     <>
-      {products.map((p) => (
-        <Item key={p.id} product={p} />
+      {data.map((p) => (
+        <Item key={p.id} id={p.id} product={p} />
       ))}
     </>
   );
 };
 
-export default ItemList;
+export default React.memo(ItemList)

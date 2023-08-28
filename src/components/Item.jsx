@@ -5,7 +5,7 @@ import { LinkContainer } from "react-router-bootstrap";
 const Item = ({ product }) => {
   return (
     <Card style={{ width: "18rem" }}>
-      <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
+      <Card.Img variant="top" src={product.picture}/>
       <Card.Body>
         <Card.Title>{product.name}</Card.Title>
       </Card.Body>
