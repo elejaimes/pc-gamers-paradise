@@ -1,10 +1,23 @@
-import { useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
-import { AiOutlinePlus , AiOutlineClose, AiOutlineMinus } from "react-icons/ai";
+import { AiOutlinePlus, AiOutlineClose, AiOutlineMinus } from "react-icons/ai";
+import { ShoppingCartContext } from "../contexts/ShoppingCartContext";
+import Swal from "sweetalert2";
 
-
-const ItemCount = ({ stock, id, name, price, setCart }) => {
+const ItemCount = ({ stock, id, name, price }) => {
   const [count, setCount] = useState(0);
+  const { cart, setCart } = useContext(ShoppingCartContext);
+
+  useEffect(() => {
+    const storedCart = localStorage.getItem("cart");
+    if (storedCart) {
+      setCart(JSON.parse(storedCart));
+    }
+  }, [setCount]);
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   const add = () => {
     if (count < stock) {
@@ -19,7 +32,7 @@ const ItemCount = ({ stock, id, name, price, setCart }) => {
   };
 
   const reset = () => {
-    setCount (0)
+    setCount(0);
   };
 
   const addToCart = () => {
@@ -29,18 +42,31 @@ const ItemCount = ({ stock, id, name, price, setCart }) => {
         if (isItemFound) {
           return currentItems.map((item) => {
             if (item.id === id) {
-              return {...item , quantity: item.quantity + count}
+              return { ...item, quantity: item.quantity + count };
             } else {
               return item;
             }
-          })
+          });
         } else {
-          return [...currentItems, {id, quantity: count, price, name }]
+          return [
+            ...currentItems,
+            { id, quantity: count, price, name },
+          ];
         }
-      })
-      reset()
+      });
+      reset();
+      
+      // Mostrar SweetAlert
+      const alertText =
+        count === 1 ? `${name} agregado al carrito.` : `${count} ${name} agregados al carrito.`;
+      Swal.fire({
+        title: "¡Agregado al Carrito!",
+        text: alertText,
+        icon: "success",
+        confirmButtonText: "OK",
+      });
     }
-  }
+  };
 
   return (
     <div>
@@ -54,7 +80,9 @@ const ItemCount = ({ stock, id, name, price, setCart }) => {
       <Button variant="danger" onClick={reset}>
         <AiOutlineClose />
       </Button>
-      <Button variant="primary" onClick={() => addToCart()}>Agregar al Carrito : {count} </Button>
+      <Button variant="primary" onClick={addToCart}>
+        Agregar al Carrito
+      </Button>
     </div>
   );
 };

@@ -1,17 +1,23 @@
-import {createContext, useState} from 'react'
+import { createContext, useState, useEffect } from 'react';
 
-export const ShoppingCartContext = createContext (null)
+export const ShoppingCartContext = createContext(null);
 
 export const ShoppingCartProvider = ({ children }) => {
+  const storedCart = localStorage.getItem("cart");
+  const initialCart = storedCart ? JSON.parse(storedCart) : [];
 
-    const [cart, setCart] = useState ([])
+  const [cart, setCart] = useState(initialCart);
 
-    return (
-        
-        <ShoppingCartContext.Provider value={{cart, setCart}}>
-            {children}
-        </ShoppingCartContext.Provider>
-    )
-}
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
+  return (
+    <ShoppingCartContext.Provider value={{ cart, setCart }}>
+      {children}
+    </ShoppingCartContext.Provider>
+  );
+};
+
 
 export default ShoppingCartProvider

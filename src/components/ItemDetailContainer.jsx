@@ -1,4 +1,4 @@
-import ItemDetail from "./ItemDetail";
+/* import ItemDetail from "./ItemDetail";
 import { useEffect, useState } from "react";
 import { getDocs, collection, getFirestore } from "firebase/firestore"
 
@@ -18,32 +18,41 @@ const ItemDetailContainer = () => {
     })
   }, []);
 
-  /* const filteredProduct = products.find(
-    (product) => product.id.toString() === productId
-  ); */
-
   return <ItemDetail items={data} />
-    /* <div>
-      <h1>Productos</h1>
-      {
-        data.map((item) => (
-          <div key={item.name}>
-            <h3>producto: {item.name}</h3>
-            <h4>Categoría: {item.category}</h4>
-            <p>Precio: ${item.price}</p>
-          </div>
-
-        ))
-      }
-       {error ? (
-        <div>Error: {error.message}</div>
-      ) : filteredProduct ? (
-        <ItemDetail product={filteredProduct} setCart={setCart} />
-      ) : (
-        <p>Producto no encontrado</p>
-      )} 
-    </div>
-  );  */
 }; 
+
+export default ItemDetailContainer;
+ */
+
+import React from "react";
+import { useParams } from "react-router-dom";
+import { collection, getDocs, getFirestore } from "firebase/firestore";
+import ItemDetail from "./ItemDetail";
+
+const ItemDetailContainer = () => {
+  const { id } = useParams();
+  const [data, setData] = React.useState([]);
+
+  React.useEffect(() => {
+    const db = getFirestore();
+    const itemsCollection = collection(db, "products");
+
+    getDocs(itemsCollection)
+      .then((querySnapshot) => {
+        const items = querySnapshot.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+        setData(items);
+      })
+      .catch((error) => {
+        console.error("Error al obtener la lista de productos:", error);
+      });
+  }, []);
+
+  return (
+    <ItemDetail product={data.find((item) => item.id === id)} />
+  );
+};
 
 export default ItemDetailContainer;
