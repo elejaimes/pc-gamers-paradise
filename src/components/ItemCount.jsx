@@ -1,5 +1,5 @@
-import { useContext, useState, useEffect } from "react";
-import { Button } from "react-bootstrap";
+import React, { useContext, useState, useEffect } from "react";
+import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { AiOutlinePlus, AiOutlineClose, AiOutlineMinus } from "react-icons/ai";
 import { ShoppingCartContext } from "../contexts/ShoppingCartContext";
 import Swal from "sweetalert2";
@@ -55,7 +55,7 @@ const ItemCount = ({ stock, id, name, price }) => {
         }
       });
       reset();
-      
+
       // Mostrar SweetAlert
       const alertText =
         count === 1 ? `${name} agregado al carrito.` : `${count} ${name} agregados al carrito.`;
@@ -69,21 +69,49 @@ const ItemCount = ({ stock, id, name, price }) => {
   };
 
   return (
-    <div>
-      <Button variant="secondary" onClick={subtract} disabled={count === 0}>
-        <AiOutlineMinus />
-      </Button>
-      <span>{count}</span>
-      <Button variant="secondary" onClick={add} disabled={count === stock}>
-        <AiOutlinePlus />
-      </Button>
-      <Button variant="danger" onClick={reset}>
-        <AiOutlineClose />
-      </Button>
-      <Button variant="primary" onClick={addToCart}>
-        Agregar al Carrito
-      </Button>
-    </div>
+    <Container>
+      <Row className="justify-content-center">
+        <Card style={{ width: "20rem" }}>
+          <Card.Body>
+            <Row className="align-items-center justify-content-between">
+              <Col xs={2}>
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  onClick={subtract}
+                  disabled={count === 0}
+                >
+                  <AiOutlineMinus />
+                </Button>
+              </Col>
+              <Col xs={2} className="text-center">
+                <span>{count}</span>
+              </Col>
+              <Col xs={2}>
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  onClick={add}
+                  disabled={count === stock}
+                >
+                  <AiOutlinePlus />
+                </Button>
+              </Col>
+              <Col xs={2}>
+                <Button variant="danger" size="sm" onClick={reset}>
+                  <AiOutlineClose />
+                </Button>
+              </Col>
+            </Row>
+          </Card.Body>
+          <Card.Footer className="text-center">
+            <Button variant="primary" onClick={addToCart}>
+              Agregar al Carrito
+            </Button>
+          </Card.Footer>
+        </Card>
+      </Row>
+    </Container>
   );
 };
 
