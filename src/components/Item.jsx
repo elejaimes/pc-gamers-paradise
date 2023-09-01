@@ -15,7 +15,7 @@ const Item = ({ product }) => {
         </ListGroup>
         <Card.Body className="d-flex justify-content-center">
           <LinkContainer to={`/item/${product.id}`}>
-            <Button variant="primary">Ver Detalle</Button>
+            <Button variant="secondary">Ver Detalle</Button>
           </LinkContainer>
         </Card.Body>
       </Card>

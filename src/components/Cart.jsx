@@ -19,7 +19,7 @@ const Cart = () => {
         <Col xs={12} md={8}>
           <ShoppingCart />
           <div className="text-center mt-3">
-            <Button variant="primary" onClick={() => setShowForm(true)}>
+            <Button variant="light" onClick={() => setShowForm(true)}>
               Comprar
             </Button>
             <Button variant="secondary" onClick={handleEmptyCart} className="ms-3">

@@ -123,7 +123,7 @@ const ItemCount = ({ stock, id, name, price }) => {
             </Row>
           </Card.Body>
           <Card.Footer className="text-center card-footer">
-            <Button variant="primary" onClick={addToCart}>
+            <Button variant="secondary" onClick={addToCart}>
               Agregar al Carrito
             </Button>
           </Card.Footer>
