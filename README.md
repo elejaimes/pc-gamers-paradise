@@ -1,18 +1,16 @@
 # PC Gamers Paradise
 
-<!-- Pendiente - Por crear logo -->
-
-![Segunda PreEntrega GIF](./src/assets/segundaPreEntrega.gif)
+![Proyecto Final ReactJS](./src/assets/PC%20Gamers%20Paradise.gif)
 
 ## Descripción
 
-PC Gamers Paradise es una tienda online de productos de tecnología, con un enfoque especial en computadoras para gamers. Este proyecto fue desarrollado como parte del curso de ReactJS en CoderHouse.
+PC Gamers Paradise es una tienda en línea de productos de tecnología, con un enfoque especial en computadoras para gamers. Este proyecto fue desarrollado como parte del curso de ReactJS en CoderHouse.
 
 ## Autor
 
-- Nombre: Luis Jaimes Omaña
-- Correo electrónico: ferbluis143@gmail.com
-- LinkedIn: [Luis Jaimes Omaña](https://www.linkedin.com/in/elejaimes/)
+- **Nombre:** Luis Jaimes Omaña
+- **Correo electrónico:** ferbluis143@gmail.com
+- **LinkedIn:** [Luis Jaimes Omaña](https://www.linkedin.com/in/elejaimes/)
 
 ## Tecnologías Utilizadas
 
@@ -21,6 +19,8 @@ PC Gamers Paradise es una tienda online de productos de tecnología, con un enfo
 - Bootstrap-react
 - CSS
 - icons-bootstrap
+- Firebase
+- SweetAlert2
 
 ## Estructura de Archivos
 
@@ -34,6 +34,26 @@ PC Gamers Paradise es una tienda online de productos de tecnología, con un enfo
 - `node_modules/`: Carpeta que contiene las dependencias de Node.js.
 - `public/`: Carpeta que contiene archivos públicos como el favicon y otros recursos.
 
----
+## Uso de Librerías
 
-¡Gracias por revisar PC Gamers Paradise! Si tienes alguna pregunta o sugerencia, no dudes en contactarme. ¡Espero que disfrutes explorando el mundo de la tecnología para gamers en nuestra tienda online!
+- **Firebase:** Firebase se utiliza para gestionar la base de datos de productos y almacenar las compras. Cada orden generada recibe un ID único.
+
+- **SweetAlert2:** SweetAlert2 se utiliza para mostrar mensajes ante errores y eventos importantes, como agregar productos al carrito de compras. Estos mensajes mejoran la experiencia del usuario al proporcionar retroalimentación visual y mensajes claros.
+
+## Rutas de Navegación
+
+Aquí están las rutas de navegación de tu aplicación:
+
+- `/`: Página de inicio.
+- `/cart`: Página del carrito de compras.
+- `/catalogue`: Página de catálogo.
+- `/category/:category`: Página de catálogo filtrado por categoría.
+- `/item/:id`: Página de detalles del producto.
+
+## Iniciar la Aplicación
+
+Para iniciar la aplicación, puedes ejecutar el siguiente comando:
+
+```bash
+npm run dev
+```
