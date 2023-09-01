@@ -4,8 +4,8 @@ import { LinkContainer } from "react-router-bootstrap";
 
 const Item = ({ product }) => {
   return (
-    <Col xs={12} sm={6} md={4} lg={3} className="mb-4">
-      <Card>
+    <Col xs={12} sm={6} md={4} lg={4} xl={3}>
+      <Card className="mb-6">
         <Card.Img variant="top" src={product.picture} className="img-fluid" />
         <Card.Body>
           <Card.Title>{product.name}</Card.Title>
@@ -22,5 +22,4 @@ const Item = ({ product }) => {
     </Col>
   );
 };
-
 export default Item;
