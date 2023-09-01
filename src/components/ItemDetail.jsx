@@ -31,24 +31,25 @@ const ItemDetail = () => {
   }
 
   return (
-    <Container>
+    <Container className="card-container">
       <Row className="justify-content-center">
-        <Card style={{ width: "20rem" }}>
-          <Card.Img variant="top" src={product[0].picture} />
+        <Card className="card">
+          <Card.Img className="card-img" variant="top" src={product[0].picture} />
           <Card.Body>
-            <Card.Title>{product[0].name}</Card.Title>
+            <Card.Title className="card-title">{product[0].name}</Card.Title>
           </Card.Body>
-          <ListGroup className="list-group-flush">
-            <ListGroup.Item>{product[0].description}</ListGroup.Item>
-            <ListGroup.Item>Categoría: {product[0].category}</ListGroup.Item>
-            <ListGroup.Item>Precio: ${product[0].price}</ListGroup.Item>
-            <ListGroup.Item>Disponibilidad: {product[0].stock}</ListGroup.Item>
+          <ListGroup className="list-group-flush list-group">
+            <ListGroup.Item className="list-group-item">{product[0].description}</ListGroup.Item>
+            <ListGroup.Item className="list-group-item">Categoría: {product[0].category}</ListGroup.Item>
+            <ListGroup.Item className="list-group-item">Precio: ${product[0].price}</ListGroup.Item>
+            <ListGroup.Item className="list-group-item">Disponibilidad: {product[0].stock}</ListGroup.Item>
           </ListGroup>
           <ItemCount
             stock={product[0].stock}
             id={product[0].id}
             name={product[0].name}
             price={product[0].price}
+            className="item-count-container"
           />
         </Card>
       </Row>

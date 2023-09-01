@@ -37,44 +37,62 @@ const ItemCount = ({ stock, id, name, price }) => {
 
   const addToCart = () => {
     if (count > 0) {
-      setCart((currentItems) => {
-        const isItemFound = currentItems.find((item) => item.id === id);
-        if (isItemFound) {
-          return currentItems.map((item) => {
-            if (item.id === id) {
-              return { ...item, quantity: item.quantity + count };
-            } else {
-              return item;
-            }
-          });
-        } else {
-          return [
-            ...currentItems,
-            { id, quantity: count, price, name },
-          ];
+      const currentQuantityInCart = cart.reduce((total, item) => {
+        if (item.id === id) {
+          return total + item.quantity;
         }
-      });
-      reset();
-
-      // Mostrar SweetAlert
-      const alertText =
-        count === 1 ? `${name} agregado al carrito.` : `${count} ${name} agregados al carrito.`;
-      Swal.fire({
-        title: "¡Agregado al Carrito!",
-        text: alertText,
-        icon: "success",
-        confirmButtonText: "OK",
-      });
+        return total;
+      }, 0);
+  
+      const totalQuantityInCart = currentQuantityInCart + count;
+  
+      if (totalQuantityInCart > stock) {
+        Swal.fire({
+          title: "Stock Agotado",
+          text: `El stock máximo para ${name} es ${stock}.`,
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+      } else {
+        setCart((currentItems) => {
+          const isItemFound = currentItems.find((item) => item.id === id);
+          if (isItemFound) {
+            return currentItems.map((item) => {
+              if (item.id === id) {
+                return { ...item, quantity: item.quantity + count };
+              } else {
+                return item;
+              }
+            });
+          } else {
+            return [
+              ...currentItems,
+              { id, quantity: count, price, name, stock },
+            ];
+          }
+        });
+        reset();
+  
+        // Mostrar SweetAlert
+        const alertText =
+          count === 1 ? `${name} agregado al carrito.` : `${count} ${name} agregados al carrito.`;
+        Swal.fire({
+          title: "¡Agregado al Carrito!",
+          text: alertText,
+          icon: "success",
+          confirmButtonText: "OK",
+        });
+      }
     }
   };
 
   return (
-    <Container>
+    <Container className="card-container">
       <Row className="justify-content-center">
-        <Card style={{ width: "20rem" }}>
+        <Card className="card">
           <Card.Body>
-            <Row className="align-items-center justify-content-between">
-              <Col xs={2}>
+            <Row className="align-items-center justify-content-between card-body-row">
+              <Col xs={2} className="button-col">
                 <Button
                   variant="secondary"
                   size="sm"
@@ -84,10 +102,10 @@ const ItemCount = ({ stock, id, name, price }) => {
                   <AiOutlineMinus />
                 </Button>
               </Col>
-              <Col xs={2} className="text-center">
-                <span>{count}</span>
+              <Col xs={2} className="text-center-col">
+                <span className="text-count">{count}</span>
               </Col>
-              <Col xs={2}>
+              <Col xs={2} className="button-col">
                 <Button
                   variant="secondary"
                   size="sm"
@@ -97,14 +115,14 @@ const ItemCount = ({ stock, id, name, price }) => {
                   <AiOutlinePlus />
                 </Button>
               </Col>
-              <Col xs={2}>
+              <Col xs={2} className="button-col">
                 <Button variant="danger" size="sm" onClick={reset}>
                   <AiOutlineClose />
                 </Button>
               </Col>
             </Row>
           </Card.Body>
-          <Card.Footer className="text-center">
+          <Card.Footer className="text-center card-footer">
             <Button variant="primary" onClick={addToCart}>
               Agregar al Carrito
             </Button>
